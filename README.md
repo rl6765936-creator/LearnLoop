@@ -8,10 +8,6 @@ LearnLoop reads the study folder you approve, understands what you are learning,
 
 ![Python](https://img.shields.io/badge/Python-3.13-3776AB?logo=python&logoColor=white)
 ![Windows](https://img.shields.io/badge/Windows-10%20%7C%2011-0078D6?logo=windows&logoColor=white)
-![LangGraph](https://img.shields.io/badge/workflow-LangGraph-1C3C3C?logo=langchain&logoColor=white)
-![Tests](https://img.shields.io/badge/tests-538%20passing-2EA043?logo=pytest&logoColor=white)
-![Privacy](https://img.shields.io/badge/data-local--first%20%7C%20encrypted-6E40C9?logo=letsencrypt&logoColor=white)
-![UI](https://img.shields.io/badge/UI-Hebrew%20RTL-F28C28?logo=html5&logoColor=white)
 
 </div>
 
