@@ -8,12 +8,9 @@ LearnLoop reads the study folder you approve, understands what you are learning,
 
 ![Python](https://img.shields.io/badge/Python-3.13-3776AB?logo=python&logoColor=white)
 ![Windows](https://img.shields.io/badge/Windows-10%20%7C%2011-0078D6?logo=windows&logoColor=white)
-![LangGraph](https://img.shields.io/badge/LangGraph-workflow-1C3C3C?logo=langchain&logoColor=white)
-![SQLite](https://img.shields.io/badge/SQLite-encrypted-003B57?logo=sqlite&logoColor=white)
 ![pytest](https://img.shields.io/badge/tests-538%20passing-2EA043?logo=pytest&logoColor=white)
-![JavaScript](https://img.shields.io/badge/UI-Hebrew%20RTL-F7DF1E?logo=javascript&logoColor=black)
-![OpenAI](https://img.shields.io/badge/AI-OpenAI%20%7C%20Gemini-412991?logo=openai&logoColor=white)
-![Git](https://img.shields.io/badge/source-Git%20%28dulwich%29-F05032?logo=git&logoColor=white)
+
+🐍 Python &nbsp;·&nbsp; 🧠 LangGraph &nbsp;·&nbsp; 🗄️ SQLite (encrypted) &nbsp;·&nbsp; 🤖 OpenAI &nbsp;·&nbsp; 🌿 Git (dulwich) &nbsp;·&nbsp; 🌐 JavaScript UI (Hebrew RTL) &nbsp;·&nbsp; 🧪 pytest
 
 </div>
 
