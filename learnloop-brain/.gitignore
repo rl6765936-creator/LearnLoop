@@ -1,0 +1,31 @@
+# --- never in Git: personal data, keys, machine-specific files ---------------------------
+# Virtual environment (recreated from requirements.txt)
+.venv/
+venv/
+# Python cache
+__pycache__/
+*.pyc
+# Editors
+.idea/
+.vscode/
+# Her data: encrypted database, key files, local token, budget ledger, providers.json, evaluations
+local_data/
+# Backups and their key companions (never next to the code)
+*.backup
+*.recovery
+*.dpapi
+*.db
+*.db-wal
+*.db-shm
+ingest.token
+# Old copies kept on her computer
+_backup/
+# Secrets – keys live ONLY in environment variables
+.env
+.env.*
+*.key
+*.pem
+
+# Font downloads: only the six files the app uses are kept (ui/fonts/*.ttf + OFL.txt)
+ui/fonts/*.zip
+ui/fonts/*/

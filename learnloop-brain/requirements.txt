@@ -1,0 +1,8 @@
+# LearnLoop brain. Install into THIS project's venv only:
+#   python -m pip install -r requirements.txt
+# None of these send data anywhere by themselves. No model provider and no LangSmith
+# account are connected (no API keys).
+langgraph>=1.0          # workflow engine: steps, pause for approval, resume (APPROVED technology)
+langchain-core>=1.0     # base types used by langgraph (APPROVED technology)
+jsonschema>=4.20        # checks data against the contracts in contracts/ (local, small)
+cryptography>=42        # AES-256-GCM field encryption and encrypted backups (local, no network)

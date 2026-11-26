@@ -1,0 +1,22 @@
+# LearnLoop – nothing personal ever goes to Git. Each project has its own .gitignore as well.
+.venv/
+venv/
+__pycache__/
+*.pyc
+.idea/
+.vscode/
+local_data/
+_backup/
+*.backup
+*.recovery
+*.dpapi
+*.db
+*.db-wal
+*.db-shm
+ingest.token
+.env
+.env.*
+*.key
+*.pem
+Thumbs.db
+desktop.ini

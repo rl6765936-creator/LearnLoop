@@ -1,0 +1,21 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "learnloop/approval_decision/1",
+  "title": "ApprovalDecision v1 – the user's answer to one approval request",
+  "type": "object",
+  "additionalProperties": false,
+  "required": ["request_id", "action"],
+  "properties": {
+    "request_id": {"type": "string", "minLength": 1},
+    "action": {"enum": ["approve", "reject", "correct"]},
+    "correction": {
+      "type": "object", "additionalProperties": false,
+      "properties": {
+        "name": {"type": "string", "minLength": 1, "maxLength": 120},
+        "use_existing_id": {"type": "string", "maxLength": 64}
+      }
+    }
+  },
+  "if": {"properties": {"action": {"const": "correct"}}},
+  "then": {"required": ["correction"]}
+}

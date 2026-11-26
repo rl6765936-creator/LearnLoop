@@ -1,0 +1,16 @@
+{
+  "provider": "anthropic",
+  "transport": "mock",
+  "allow_network": false,
+  "models": {
+    "anthropic": "SET-AT-ACTIVATION",
+    "openai": "SET-AT-ACTIVATION",
+    "gemini": "SET-AT-ACTIVATION"
+  },
+  "key_env": {
+    "anthropic": "ANTHROPIC_API_KEY",
+    "openai": "OPENAI_API_KEY",
+    "gemini": "GEMINI_API_KEY"
+  },
+  "language": "he"
+}

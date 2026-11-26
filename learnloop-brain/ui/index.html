@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="he" dir="rtl">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="color-scheme" content="light dark">
+  <title>LearnLoop</title>
+  <link rel="stylesheet" href="/css/fonts.css">
+  <link rel="stylesheet" href="/css/tokens.css">
+  <link rel="stylesheet" href="/css/app.css">
+  <script type="module" src="/js/main.js"></script>
+</head>
+<body>
+  <header class="topbar">
+    <span class="brand" id="brand">LearnLoop</span>
+    <span class="badge spacer" id="mode-badge">מצב הדגמה · נתונים מומצאים</span>
+  </header>
+  <div class="layout">
+    <nav class="sidebar" aria-label="מרחבי למידה">
+      <button class="nav-btn" data-view="home" data-icon="home">הבית</button>
+      <button class="nav-btn" data-view="approvals" data-icon="decisions">החלטות ואישורים <span id="approval-count" class="count"></span></button>
+      <h2 class="side-title">המקצועות שלי</h2>
+      <ul id="subject-list" class="subject-list"></ul>
+      <button class="nav-btn secondary" data-view="system" data-icon="system">מצב המערכת</button>
+      <button class="nav-btn secondary" data-view="settings" data-icon="settings">הגדרות והנחות</button>
+    </nav>
+    <main id="view" class="view" tabindex="-1"></main>
+  </div>
+  <div id="toast" class="toast" role="status" aria-live="polite"></div>
+</body>
+</html>

@@ -1,0 +1,24 @@
+# --- never in Git: personal data, keys, machine-specific files ---------------------------
+# Virtual environment (recreated from requirements.txt)
+.venv/
+venv/
+# Python cache
+__pycache__/
+*.pyc
+# Editors
+.idea/
+.vscode/
+# Local settings, approved folder, outbox (filtered study text), state, inventory – personal
+local_data/
+# PyInstaller build output (rebuilt with build_exe.ps1)
+build/
+dist/
+*.spec
+!learnloop-collector.spec
+# Old copies kept on her computer
+_backup/
+# Secrets – keys live ONLY in environment variables
+.env
+.env.*
+*.key
+*.pem

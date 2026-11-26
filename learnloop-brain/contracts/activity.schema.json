@@ -1,0 +1,42 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "learnloop/activity/1",
+  "title": "Activity v1 – what the MODEL may propose as a learning activity",
+  "description": "Strict proposal. Grading of closed questions and every write to the graph are done by code.",
+  "type": "object",
+  "additionalProperties": false,
+  "required": ["title", "items"],
+  "properties": {
+    "title": {"type": "string", "minLength": 1, "maxLength": 160},
+    "summary_text": {"type": "string", "maxLength": 6000},
+    "code": {"type": "string", "maxLength": 20000},
+    "items": {
+      "type": "array", "maxItems": 10,
+      "items": {
+        "type": "object", "additionalProperties": false,
+        "required": ["id", "kind", "prompt", "evidence_type", "topic"],
+        "properties": {
+          "id": {"type": "string", "minLength": 1, "maxLength": 32},
+          "kind": {"enum": ["multiple_choice", "match", "short_answer", "explain", "explain_code",
+                            "predict_change", "find_error", "justify_choice"]},
+          "prompt": {"type": "string", "minLength": 1, "maxLength": 2000},
+          "options": {"type": "array", "minItems": 2, "maxItems": 6, "items": {"type": "string", "maxLength": 300}},
+          "answer_index": {"type": "integer", "minimum": 0},
+          "pairs": {"type": "array", "minItems": 2, "maxItems": 8,
+                    "items": {"type": "array", "minItems": 2, "maxItems": 2, "items": {"type": "string", "maxLength": 200}}},
+          "reference_answer": {"type": "string", "maxLength": 2000},
+          "hint": {"type": "string", "maxLength": 500},
+          "evidence_type": {"enum": ["quiz", "explain", "apply", "transfer", "retention", "debug", "analyze"]},
+          "topic": {"type": "string", "maxLength": 120}
+        },
+        "allOf": [
+          {"if": {"properties": {"kind": {"const": "multiple_choice"}}},
+           "then": {"required": ["options", "answer_index"]}},
+          {"if": {"properties": {"kind": {"const": "match"}}}, "then": {"required": ["pairs"]}},
+          {"if": {"properties": {"kind": {"enum": ["short_answer", "explain", "explain_code", "predict_change", "find_error", "justify_choice"]}}},
+           "then": {"required": ["reference_answer"]}}
+        ]
+      }
+    }
+  }
+}

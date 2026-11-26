@@ -1,0 +1,239 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "learnloop/transfer_envelope/1",
+  "title": "TransferEnvelope v1 – filtered content from the Local Collector",
+  "description": "Design proposal (brain-design §4.1). The Collector does NOT send this yet: real transfer needs approval (Q-D).",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "schema_version",
+    "envelope_id",
+    "idempotency_key",
+    "source",
+    "file",
+    "filter",
+    "extract",
+    "chunks",
+    "content_trust"
+  ],
+  "properties": {
+    "schema_version": {
+      "const": 1
+    },
+    "envelope_id": {
+      "type": "string",
+      "minLength": 8,
+      "maxLength": 64
+    },
+    "idempotency_key": {
+      "type": "string",
+      "pattern": "^[0-9a-f]{64}$"
+    },
+    "source": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "type",
+        "source_id",
+        "grant_id"
+      ],
+      "properties": {
+        "type": {
+          "enum": [
+            "folder",
+            "git",
+            "manual"
+          ]
+        },
+        "source_id": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 128
+        },
+        "grant_id": {
+          "type": [
+            "string",
+            "null"
+          ],
+          "maxLength": 128
+        }
+      }
+    },
+    "file": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "rel_path",
+        "sha256",
+        "size",
+        "change"
+      ],
+      "properties": {
+        "rel_path": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 1024
+        },
+        "sha256": {
+          "type": "string",
+          "pattern": "^[0-9a-f]{64}$"
+        },
+        "size": {
+          "type": "integer",
+          "minimum": 0
+        },
+        "change": {
+          "enum": [
+            "new",
+            "modified",
+            "moved",
+            "removed"
+          ]
+        },
+        "previous_rel_path": {
+          "type": "string",
+          "maxLength": 1024
+        }
+      }
+    },
+    "filter": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "status",
+        "redactions"
+      ],
+      "properties": {
+        "status": {
+          "enum": [
+            "clean",
+            "redacted"
+          ]
+        },
+        "redactions": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "additionalProperties": false,
+            "required": [
+              "kind",
+              "location"
+            ],
+            "properties": {
+              "kind": {
+                "type": "string"
+              },
+              "location": {
+                "type": "string"
+              }
+            }
+          }
+        }
+      }
+    },
+    "extract": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "reader",
+        "warnings"
+      ],
+      "properties": {
+        "reader": {
+          "type": "string"
+        },
+        "warnings": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        }
+      }
+    },
+    "chunks": {
+      "type": "array",
+      "maxItems": 500,
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": [
+          "chunk_id",
+          "index",
+          "total",
+          "location",
+          "text"
+        ],
+        "properties": {
+          "chunk_id": {
+            "type": "string",
+            "minLength": 1,
+            "maxLength": 128
+          },
+          "index": {
+            "type": "integer",
+            "minimum": 0
+          },
+          "total": {
+            "type": "integer",
+            "minimum": 1
+          },
+          "location": {
+            "type": "string",
+            "maxLength": 256
+          },
+          "text": {
+            "type": "string",
+            "maxLength": 200000
+          }
+        }
+      }
+    },
+    "content_trust": {
+      "const": "untrusted_user_file"
+    },
+    "context": {
+      "type": "object",
+      "additionalProperties": false,
+      "description": "Decision 2026-11-24: explicit study classification set by the USER (never inferred), the technical queue (live = new/changed after ongoing work started, backfill = older) and the file's last-modified time.",
+      "required": [
+        "collection",
+        "study_status",
+        "queue"
+      ],
+      "properties": {
+        "collection": {
+          "type": "string",
+          "maxLength": 512
+        },
+        "study_status": {
+          "enum": [
+            "completed",
+            "active",
+            "not_studied",
+            "unknown"
+          ]
+        },
+        "period": {
+          "type": [
+            "string",
+            "null"
+          ],
+          "maxLength": 80
+        },
+        "queue": {
+          "enum": [
+            "live",
+            "backfill"
+          ]
+        },
+        "modified_at": {
+          "type": [
+            "string",
+            "null"
+          ],
+          "maxLength": 40
+        }
+      }
+    }
+  }
+}

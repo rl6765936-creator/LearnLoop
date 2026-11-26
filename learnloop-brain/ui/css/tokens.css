@@ -1,0 +1,75 @@
+/* LearnLoop design tokens – the ONLY place colors, type, spacing, radii, shadows and motion are defined.
+   Direction approved 25.11.2026: "Peach & Champagne" – warm ivory ground, deep cocoa ink,
+   champagne gold used only for focus, selection and milestones.
+   Subject colors (identity.js) and knowledge-state colors (below) are deliberately separate palettes. */
+:root {
+  /* type – files in /fonts (fonts.css); Windows Hebrew fonts are the fallback, nothing loads from the internet */
+  --font-head: "Frank Ruhl Libre", "David", "Narkisim", serif;
+  --font-body: "IBM Plex Sans Hebrew", "Segoe UI", "Gisha", "Arial Hebrew", system-ui, sans-serif;
+  --font-code: "IBM Plex Mono", "Cascadia Code", Consolas, monospace;
+
+  /* ground and ink */
+  --ivory: #FFF9F4;        /* page */
+  --whisper: #FBEFE8;      /* sidebar, quiet panels */
+  --surface: #FFFFFF;      /* cards */
+  --sunken: #F7EFE8;       /* inputs, code, inner tiles */
+  --sand: #E8D9CC;         /* hairlines */
+  --hair: #EFE3D8;         /* card borders */
+  --cocoa: #604B49;        /* body text, primary button – 7.7:1 */
+  --cocoa-deep: #4A3836;   /* headings */
+  --cocoa-soft: #7A6461;   /* secondary text – 5.3:1 */
+  --on-cocoa: #FFF9F4;
+
+  /* brand */
+  --peach: #F4C6B5; --blush: #E9B8C0; --rose: #DDA5B1; --mauve: #C9B4C9;
+  --rose-ink: #9A5866;     /* text on rose – 5.1:1 */
+
+  /* gold: accent only, never a background, never body text */
+  --champagne: #D8BC8A; --gold: #B99A62; --gold-ink: #7D6030; /* gold text – 5.6:1 */
+  --gold-wash: #F8F0E2;
+
+  /* feedback */
+  --alert: #B5534A;        /* ONLY the red indicator next to a subject (quiz open > 2 days) and errors */
+  --ok-ink: #4F6B4A;
+
+  /* knowledge states (approved four). Neutral, never a subject color; always paired with a glyph */
+  --state-understood: #604B49;
+  --state-learning: #A88C86;
+  --state-reinforce: #9A5866;
+  --state-reinforce-fill: #DDA5B1;
+  --state-new: #8F7B75;
+
+  /* subject identity: --s-base and --s-ink are set per element by identity.js (default: gold) */
+  --s-base: #D8BC8A; --s-ink: #7D6030;
+
+  /* space, radius, depth, motion */
+  --space-1: 4px; --space-2: 8px; --space-3: 12px; --space-4: 16px; --space-5: 20px; --space-6: 24px; --space-8: 32px; --space-10: 40px; --space-12: 56px;
+  --r-shell: 28px; --r-card: 20px; --r-tile: 14px; --r-control: 12px; --r-pill: 999px;
+  --shadow-soft: 0 10px 28px -20px rgba(96, 75, 73, .38);
+  --shadow-lift: 0 22px 44px -24px rgba(96, 75, 73, .48);
+  --focus-ring: 0 0 0 3px rgba(216, 188, 138, .55);
+  --ease: cubic-bezier(.2, .7, .2, 1);
+  --t-fast: 160ms; --t-mid: 320ms; --t-slow: 900ms;
+
+  /* legacy names still used in a few places */
+  --bg: var(--ivory); --text: var(--cocoa); --muted: var(--cocoa-soft); --line: var(--sand);
+  color-scheme: light;
+}
+
+@media (prefers-color-scheme: dark) {
+  :root {
+    --ivory: #1E1817; --whisper: #251D1C; --surface: #2B2221; --sunken: #241C1B; --sand: #43363A; --hair: #3A2F2E;
+    --cocoa: #EADCD3; --cocoa-deep: #F6ECE5; --cocoa-soft: #BCA9A2; --on-cocoa: #1E1817;
+    --rose-ink: #E7A9B6; --gold-ink: #DEC08A; --gold-wash: #3A2F22; --ok-ink: #A9C6A0; --alert: #E07B70;
+    --state-understood: #EADCD3; --state-learning: #9C847E; --state-reinforce: #E7A9B6; --state-reinforce-fill: #8E5A66; --state-new: #8F7B75;
+    --shadow-soft: 0 10px 28px -18px rgba(0, 0, 0, .6); --shadow-lift: 0 22px 44px -22px rgba(0, 0, 0, .7);
+    color-scheme: dark;
+  }
+}
+
+/* Derived subject colors are recomputed on every element, so a subject set on a container
+   tints everything inside it (a custom property defined only on :root would keep the root's value). */
+* { --s-text: var(--s-ink);
+    --s-tint: color-mix(in srgb, var(--s-base) 20%, var(--surface));
+    --s-wash: color-mix(in srgb, var(--s-base) 12%, var(--ivory)); }
+@media (prefers-color-scheme: dark) { * { --s-text: var(--s-base); --s-tint: color-mix(in srgb, var(--s-base) 16%, var(--surface)); } }
